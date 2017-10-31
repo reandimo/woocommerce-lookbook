@@ -162,13 +162,65 @@ class WC_Lookbook_Frontend{
 										 * Get associated product
 										 */
 										$product = get_post( $tag['product_id'] );
+				
+										/**
+										 * Get product object
+										 */
+										$product_info = wc_get_product( $tag['product_id'] );
+		
+										/**
+										 * Get currency
+										 */
+		
+										$product_cur = get_option('woocommerce_currency');
 
-										if ( ! $product )
+										$symbol = get_woocommerce_currency_symbol( $currency = $product_cur );
+		
+										if ( ! $product && ! $symbol )
 											continue;
+		
+		
 									?>
-
-									<a href="<?php echo get_permalink( $tag['product_id'] ); ?>" class="wc-lookbook-image-tag" style="top: <?php echo "{$tag['offset_y']}%"; ?>; left: <?php echo "{$tag['offset_x']}%"; ?> ; width: 100px; margin-left: -50px; margin-top: 5px; ">
-										<?php echo $product->post_title; ?>
+									
+									<a target="_blank" href="<?php echo get_permalink( $tag['product_id'] ); ?>" class="wc-lookbook-image-tag" style="top: <?php echo "{$tag['offset_y']}%"; ?>; left: <?php echo "{$tag['offset_x']}%"; ?>; margin-left: -50px; margin-top: 5px; width: 250px; ">
+										<?php 
+										
+									/**
+									* Get product image
+									*/
+		
+									if ( has_post_thumbnail( $tag['product_id'] ) ) {
+											
+                        $attachment_ids[0] = get_post_thumbnail_id( $tag['product_id'] );
+											
+                         $attachment = wp_get_attachment_image_src($attachment_ids[0], 'full' );  
+										
+										?>	
+										
+										<span style="width: 30%">
+											
+											<img src="<?php echo $attachment[0] ; ?>" class="card-image" height="40px" />
+										
+										</span>
+										
+										<?php } ?>
+										
+										<span style="width: 60%; float: right;">
+											
+										<h4 style="margin-top: 0; color:white;">
+  										
+  										<?php if (	strlen(	$product->post_title	) > 10	){
+										$t = ucfirst($product->post_title);
+										echo substr( $t, 0, 7	) . '...';  }
+										else{	echo ucfirst($product->post_title);	}?> 
+										 
+											
+										<?php if( $product_info->get_sale_price() !== "" ){ echo '<br><small id="sale-tag">SALE</small>'; }?> </h4>
+		
+										<h4><?php if( $product_info->get_sale_price() !== "" ){ echo "<small>".$symbol.$product_info->get_sale_price()."</small>"; } ?> <?= $symbol.$product_info->get_price() ?></h4>
+												
+										</span>
+										
 									</a>
 
 								<?php endforeach; ?>
@@ -190,15 +242,38 @@ class WC_Lookbook_Frontend{
 				<?php endforeach; ?>
 
 			</div><!-- .wc-lookbook -->
-
+		
 			<script type="text/javascript">
-				var wc_lookbook = document.querySelector('.wc-lookbook' );				
-				wc_lookbook.addEventListener( 'click', function(e){
+				var wc_lookbook = document.querySelector('.wc-lookbook' );		
+				var wc_tag = document.querySelector('.wc-lookbook-image-tag');
+				
+				wc_tag.addEventListener( 'mouseover', function(e){
+					
+					wc_tag.style.opacity = 1;
+					
+				});
+				
+				wc_tag.addEventListener( 'mouseout', function(e){
+					
+					wc_tag.style.opacity = 0.8;
+					
+				});
+				
+				wc_lookbook.addEventListener( 'click', function(e){				
+					
 					if( -1 == wc_lookbook.className.indexOf( ' hide-tags' ) ){
-						wc_lookbook.className += ' hide-tags';
+						wc_tag.style.opacity = 0;
+						setTimeout(function(){ wc_lookbook.className += ' hide-tags'; }, 200);
+						
 					} else {
 						wc_lookbook.className = wc_lookbook.className.replace( ' hide-tags', '' );
+						wc_tag.style.opacity = 0;
+						setTimeout(function(){ 	wc_tag.style.opacity = 0.8; }, 200);					
+
 					}
+						
+					
+					
 				});
 			</script>			
 		<?php 
