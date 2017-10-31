@@ -4,6 +4,7 @@
 }
 
 .wc-lookbook .wc-lookbook-tip {
+  transition: ease-in-out 0.2s !important;
   text-align: center;
   font-size: 14px;
   color: #afafaf;
@@ -29,18 +30,26 @@
   bottom: 0;
   left: 0;
 }
+
 .wc-lookbook a.wc-lookbook-image-tag {
+  transition: ease-in-out 0.2s !important;
   position: absolute;
   font-size: 13px;
   text-decoration: none;
   color: white;
   background: black;
   line-height: 1.1;
-  padding: 5px;
-  border-radius: 5px;
+  padding: 15px;
   text-align: center;
-  opacity: .9;
+  opacity: .8;
+
 }
+
+.wc-lookbook a.wc-lookbook-image-tag:hover {	
+  opacity: 1;
+
+}
+
 .wc-lookbook a.wc-lookbook-image-tag:before {
   display: inline-block;
   text-indent: -999999em;
@@ -60,6 +69,7 @@
   }
 }
 .wc-lookbook .wc-lookbook-image-caption {
+
   padding: 3px 10px 0;
   font-size: 12px;
   color: #afafaf;
@@ -68,5 +78,42 @@
   border-top: none;
 }
 .wc-lookbook.hide-tags .wc-lookbook-image-tag {
+  transition: ease-in-out 0.2s !important;
   display: none;
+}
+
+/* DETAILS UPDATE */
+
+a.wc-lookbook-image-tag h4 {
+    margin-top: 10px;
+	font-size: medium;
+}
+
+#sale-tag {
+    font-size: x-small;
+    background: red;
+    border-radius: 5px;
+    padding: 4px;
+    color: white !important;
+	text-decoration: none !important;
+}
+
+
+a.wc-lookbook-image-tag h4 small {
+    font-size: small;
+	text-decoration: line-through;
+	
+}
+
+.card-image {
+	
+	height: 80px !important;
+	width: 80px !important;
+	
+}
+
+.wc-lookbook {
+	
+	  transition: ease-in-out 0.2s !important;
+	
 }
