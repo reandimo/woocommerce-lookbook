@@ -199,7 +199,7 @@ class WC_Lookbook_Frontend{
 										
 										<span style="width: 30%; overflow: hidden;">
 											
-											<span style="background-image: url('<?php echo $attachment[0] ; ?>');  background-size: cover;" class="card-image"  />
+											<span style="background-image: url('<?php echo $attachment[0] ; ?>');  background-size: cover; background-position: center;" class="card-image"  />
 										
 										</span>
 										
