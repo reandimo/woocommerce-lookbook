@@ -207,17 +207,25 @@ class WC_Lookbook_Frontend{
 										
 										<span style="width: 60%; float: right;">
 											
-										<h4 style="margin-top: 0; color:white;">
+										<h5 style="margin-top: 0; color:white;">
   										
-  										<?php if (	strlen(	$product->post_title	) > 10	){
+  										<?php if (	strlen(	$product->post_title	) > 20	){
 										$t = ucfirst($product->post_title);
-										echo substr( $t, 0, 7	) . '...';  }
+										echo substr( $t, 0, 17	) . '...';  }
 										else{	echo ucfirst($product->post_title);	}?> 
 										 
 											
-										<?php if( $product_info->get_sale_price() !== "" ){ echo '<br><small id="sale-tag">SALE</small>'; }?> </h4>
+										<?php if( $product_info->get_sale_price() !== "" ){ echo '<small id="sale-tag">SALE</small>'; }?> </h5>
 		
-										<h4><?php if( $product_info->get_sale_price() !== "" ){ echo "<small>".$symbol.$product_info->get_sale_price()."</small>"; } ?> <?= $symbol.$product_info->get_price() ?></h4>
+											<div class="vu_p-price"><p class="price"><?php if( $product_info->get_sale_price() !== "" ){ echo "<del><span class='woocommerce-Price-amount amount'><span class='woocommerce-Price-currencySymbol'>".$symbol."</span>".$product_info->get_sale_price()."</span></del>"; } ?>
+											
+											<?= '<ins style="font-size: large;"><span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">'.$symbol.'</span>'.$product_info->get_price().'</span></ins>' ?>
+											
+											
+												</p></div>
+												
+												
+												
 												
 										</span>
 										
@@ -244,31 +252,58 @@ class WC_Lookbook_Frontend{
 			</div><!-- .wc-lookbook -->
 		
 			<script type="text/javascript">
-				var wc_lookbook = document.querySelector('.wc-lookbook' );		
+				var wc_lookbook = document.querySelector('.wc-lookbook' );	
 				var wc_tag = document.querySelector('.wc-lookbook-image-tag');
+				var wc_tags = document.getElementsByClassName('wc-lookbook-image-tag');
 				
 				wc_tag.addEventListener( 'mouseover', function(e){
 					
-					wc_tag.style.opacity = 1;
+					this.style.opacity = 1;
 					
 				});
 				
 				wc_tag.addEventListener( 'mouseout', function(e){
 					
-					wc_tag.style.opacity = 0.8;
+					this.style.opacity = 0.8;
 					
 				});
 				
 				wc_lookbook.addEventListener( 'click', function(e){				
 					
+					
 					if( -1 == wc_lookbook.className.indexOf( ' hide-tags' ) ){
-						wc_tag.style.opacity = 0;
+						
+//						OPACITY 0
+						
+						Object.keys(wc_tags).forEach(function(key) {
+
+    					wc_tags[key].style.opacity = 0;
+
+						});
+						
+//						ADD CLASS HIDE-TAGS
 						setTimeout(function(){ wc_lookbook.className += ' hide-tags'; }, 200);
 						
 					} else {
+						
 						wc_lookbook.className = wc_lookbook.className.replace( ' hide-tags', '' );
-						wc_tag.style.opacity = 0;
-						setTimeout(function(){ 	wc_tag.style.opacity = 0.8; }, 200);					
+						
+//						OPACITY 0
+						
+						Object.keys(wc_tags).forEach(function(key) {
+
+    					wc_tags[key].style.opacity = 0;
+
+						});
+						
+//						OPACITY 0.8
+						setTimeout(function(){ 							
+							
+						Object.keys(wc_tags).forEach(function(key) {
+
+    					wc_tags[key].style.opacity = 1;
+
+						}); }, 200);					
 
 					}
 						
