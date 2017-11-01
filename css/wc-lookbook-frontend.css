@@ -54,7 +54,7 @@
   content: '';
   position: absolute;
   top: -6px;
-  left: 50%;
+  left: 20%;
   margin-left: -6px;
 }
 @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
