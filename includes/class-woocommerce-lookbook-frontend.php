@@ -209,9 +209,9 @@ class WC_Lookbook_Frontend{
 											
 										<h5 style="margin-top: 0; color:white;">
   										
-  										<?php if (	strlen(	$product->post_title	) > 20	){
+  										<?php if (	strlen(	$product->post_title	) > 15	){
 										$t = ucfirst($product->post_title);
-										echo substr( $t, 0, 17	) . '...';  }
+										echo substr( $t, 0, 12	) . '...';  }
 										else{	echo ucfirst($product->post_title);	}?> 
 										 
 											
@@ -256,17 +256,6 @@ class WC_Lookbook_Frontend{
 				var wc_tag = document.querySelector('.wc-lookbook-image-tag');
 				var wc_tags = document.getElementsByClassName('wc-lookbook-image-tag');
 				
-				wc_tag.addEventListener( 'mouseover', function(e){
-					
-					this.style.opacity = 1;
-					
-				});
-				
-				wc_tag.addEventListener( 'mouseout', function(e){
-					
-					this.style.opacity = 0.8;
-					
-				});
 				
 				wc_lookbook.addEventListener( 'click', function(e){				
 					
