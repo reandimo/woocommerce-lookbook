@@ -41,11 +41,6 @@
   line-height: 1.1;
   padding: 15px;
   text-align: center;
-  opacity: .8;
-
-}
-
-.wc-lookbook a.wc-lookbook-image-tag:hover {	
   opacity: 1;
 
 }
